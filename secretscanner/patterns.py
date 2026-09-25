@@ -32,8 +32,8 @@ PATTERNS = [
     ("AWS Secret Access Key", "CRITICAL", "HIGH", re.compile(
         r"(?i)aws_secret_access_key\s*[:=]\s*['\"]?(?P<secret>[A-Za-z0-9/+=]{40})['\"]?"), "group"),
     ("Private Key Block", "CRITICAL", "HIGH", re.compile(
-        r"-----BEGIN (RSA|DSA|EC|OPENSSH|PGP|ENCRYPTED) PRIVATE KEY-----"), "none"),
-    ("Generic Private Key Block", "CRITICAL", "HIGH", re.compile(r"-----BEGIN PRIVATE KEY-----"), "none"),
+        r"[-]{5}BEGIN (RSA|DSA|EC|OPENSSH|PGP|ENCRYPTED) PRIVATE KEY[-]{5}"), "none"),
+    ("Generic Private Key Block", "CRITICAL", "HIGH", re.compile(r"[-]{5}BEGIN PRIVATE KEY[-]{5}"), "none"),
 
     ("GitHub Personal Access Token", "HIGH", "HIGH", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{36,255}\b"), "full"),
     ("GitHub Fine-Grained PAT", "HIGH", "HIGH", re.compile(r"\bgithub_pat_[A-Za-z0-9_]{22,255}\b"), "full"),
@@ -53,7 +53,7 @@ PATTERNS = [
     ("JSON Web Token (JWT)", "MEDIUM", "MEDIUM", re.compile(
         r"\beyJ[A-Za-z0-9_-]{5,}\.[A-Za-z0-9_-]{5,}\.[A-Za-z0-9_-]{5,}\b"), "full"),
     ("Database Connection String w/ Credentials", "CRITICAL", "HIGH", re.compile(
-        r"(?i)(postgres|postgresql|mysql|mongodb(\+srv)?|redis|amqp)://[^:\s\"']+:(?P<secret>[^@\s\"']+)@[^\s\"']+"), "group"),
+        r"(?i)(postgres|postgresql|mysql|mongodb(\+srv)?|redis|amqp)://[^:\s\"']+:(?P<secret>[^@\s\"'•*]+)@[^\s\"']+"), "group"),
     ("Slack/Discord/Generic Bot Token", "HIGH", "MEDIUM", re.compile(
         r"(?i)(discord|bot)[_-]?token['\"]?\s*[:=]\s*['\"]?(?P<secret>[A-Za-z0-9._-]{24,})['\"]?"), "group"),
 

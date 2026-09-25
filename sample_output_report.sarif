@@ -11,6 +11,30 @@
           "informationUri": "https://github.com/aditisingh200614-oss/git-secret-scanner",
           "rules": [
             {
+              "id": "SEC_STRIPE_LIVE_SECRET_KEY",
+              "name": "StripeLiveSecretKey",
+              "shortDescription": {
+                "text": "Stripe Live Secret Key detected in repository history"
+              },
+              "fullDescription": {
+                "text": "Potential Stripe Live Secret Key discovered in Git commit history. Severity: CRITICAL, Confidence: HIGH."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "secret",
+                  "credential",
+                  "devsecops"
+                ],
+                "precision": "high",
+                "severity": "CRITICAL",
+                "confidence": "HIGH"
+              }
+            },
+            {
               "id": "SEC_AWS_ACCESS_KEY_ID",
               "name": "AWSAccessKeyID",
               "shortDescription": {
@@ -66,30 +90,6 @@
               },
               "fullDescription": {
                 "text": "Potential Database Connection String w/ Credentials discovered in Git commit history. Severity: CRITICAL, Confidence: HIGH."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "properties": {
-                "tags": [
-                  "security",
-                  "secret",
-                  "credential",
-                  "devsecops"
-                ],
-                "precision": "high",
-                "severity": "CRITICAL",
-                "confidence": "HIGH"
-              }
-            },
-            {
-              "id": "SEC_STRIPE_LIVE_SECRET_KEY",
-              "name": "StripeLiveSecretKey",
-              "shortDescription": {
-                "text": "Stripe Live Secret Key detected in repository history"
-              },
-              "fullDescription": {
-                "text": "Potential Stripe Live Secret Key discovered in Git commit history. Severity: CRITICAL, Confidence: HIGH."
               },
               "defaultConfiguration": {
                 "level": "error"
@@ -183,131 +183,11 @@
       },
       "results": [
         {
-          "ruleId": "SEC_AWS_ACCESS_KEY_ID",
+          "ruleId": "SEC_STRIPE_LIVE_SECRET_KEY",
           "ruleIndex": 0,
           "level": "error",
           "message": {
-            "text": "[CRITICAL/HIGH] AWS Access Key ID detected in 'deploy.sh:2' by commit 4c756ac (Dev One, 2026-09-25T11:16:53+05:30) (branches: master). Status: Purged from HEAD, found in history."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "deploy.sh",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 2,
-                  "snippet": {
-                    "text": "export AWS_ACCESS_KEY_ID=AKIA\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022MPLE"
-                  }
-                }
-              }
-            }
-          ],
-          "properties": {
-            "rule": "AWS Access Key ID",
-            "severity": "CRITICAL",
-            "confidence": "HIGH",
-            "detectionMethod": "regex",
-            "fingerprint": "c800fb5bc92edc8f",
-            "commitHash": "4c756ac574f036c590b73af9b76888af3fd8c5aa",
-            "commitShort": "4c756ac",
-            "author": "Dev One",
-            "date": "2026-09-25T11:16:53+05:30",
-            "stillInHead": false,
-            "branches": [
-              "master"
-            ],
-            "keyBlockLines": 0
-          }
-        },
-        {
-          "ruleId": "SEC_AWS_SECRET_ACCESS_KEY",
-          "ruleIndex": 1,
-          "level": "error",
-          "message": {
-            "text": "[CRITICAL/HIGH] AWS Secret Access Key detected in 'deploy.sh:3' by commit 4c756ac (Dev One, 2026-09-25T11:16:53+05:30) (branches: master). Status: Purged from HEAD, found in history."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "deploy.sh",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 3,
-                  "snippet": {
-                    "text": "export AWS_SECRET_ACCESS_KEY=wJal\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022EKEY"
-                  }
-                }
-              }
-            }
-          ],
-          "properties": {
-            "rule": "AWS Secret Access Key",
-            "severity": "CRITICAL",
-            "confidence": "HIGH",
-            "detectionMethod": "regex",
-            "fingerprint": "7a654c1389cd0925",
-            "commitHash": "4c756ac574f036c590b73af9b76888af3fd8c5aa",
-            "commitShort": "4c756ac",
-            "author": "Dev One",
-            "date": "2026-09-25T11:16:53+05:30",
-            "stillInHead": false,
-            "branches": [
-              "master"
-            ],
-            "keyBlockLines": 0
-          }
-        },
-        {
-          "ruleId": "SEC_DATABASE_CONNECTION_STRING_W_CREDENTIALS",
-          "ruleIndex": 2,
-          "level": "error",
-          "message": {
-            "text": "[CRITICAL/HIGH] Database Connection String w/ Credentials detected in 'app/config.py:1' by commit e018126 (Dev One, 2026-09-25T11:16:53+05:30) (branches: master). Status: Purged from HEAD, found in history."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "app/config.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 1,
-                  "snippet": {
-                    "text": "DATABASE_URL = 'postgres://admin:Sup3\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u20222024@prod-db.internal:5432/orders'"
-                  }
-                }
-              }
-            }
-          ],
-          "properties": {
-            "rule": "Database Connection String w/ Credentials",
-            "severity": "CRITICAL",
-            "confidence": "HIGH",
-            "detectionMethod": "regex",
-            "fingerprint": "ca37c5c8bda7466f",
-            "commitHash": "e018126caf7b0919aef0a1a21c44f39ba7cfbd46",
-            "commitShort": "e018126",
-            "author": "Dev One",
-            "date": "2026-09-25T11:16:53+05:30",
-            "stillInHead": false,
-            "branches": [
-              "master"
-            ],
-            "keyBlockLines": 0
-          }
-        },
-        {
-          "ruleId": "SEC_STRIPE_LIVE_SECRET_KEY",
-          "ruleIndex": 3,
-          "level": "error",
-          "message": {
-            "text": "[CRITICAL/HIGH] Stripe Live Secret Key detected in 'app/billing.py:2' by commit 22fa839 (Dev One, 2026-09-25T11:16:54+05:30) (branches: master). Status: Purged from HEAD, found in history."
+            "text": "[CRITICAL/HIGH] Stripe Live Secret Key detected in 'app/billing.py:2' by commit f313b48 (Dev One, 2026-09-25T12:15:26+05:30) (branches: master). Status: Purged from HEAD, found in history."
           },
           "locations": [
             {
@@ -331,10 +211,130 @@
             "confidence": "HIGH",
             "detectionMethod": "regex",
             "fingerprint": "aa59c639b427a8c6",
-            "commitHash": "22fa839cfa1b50d095c9f68a90d615e4db8f6bbb",
-            "commitShort": "22fa839",
+            "commitHash": "f313b48ef87df50a8fb189bd102123794a3cc080",
+            "commitShort": "f313b48",
             "author": "Dev One",
-            "date": "2026-09-25T11:16:54+05:30",
+            "date": "2026-09-25T12:15:26+05:30",
+            "stillInHead": false,
+            "branches": [
+              "master"
+            ],
+            "keyBlockLines": 0
+          }
+        },
+        {
+          "ruleId": "SEC_AWS_ACCESS_KEY_ID",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "[CRITICAL/HIGH] AWS Access Key ID detected in 'deploy.sh:2' by commit d4236f7 (Dev One, 2026-09-25T12:15:26+05:30) (branches: master). Status: Purged from HEAD, found in history."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "deploy.sh",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 2,
+                  "snippet": {
+                    "text": "export AWS_ACCESS_KEY_ID=AKIA\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022MPLE"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "rule": "AWS Access Key ID",
+            "severity": "CRITICAL",
+            "confidence": "HIGH",
+            "detectionMethod": "regex",
+            "fingerprint": "c800fb5bc92edc8f",
+            "commitHash": "d4236f7d106a221367636ddc6ea6b03b68c7c2ce",
+            "commitShort": "d4236f7",
+            "author": "Dev One",
+            "date": "2026-09-25T12:15:26+05:30",
+            "stillInHead": false,
+            "branches": [
+              "master"
+            ],
+            "keyBlockLines": 0
+          }
+        },
+        {
+          "ruleId": "SEC_AWS_SECRET_ACCESS_KEY",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "[CRITICAL/HIGH] AWS Secret Access Key detected in 'deploy.sh:3' by commit d4236f7 (Dev One, 2026-09-25T12:15:26+05:30) (branches: master). Status: Purged from HEAD, found in history."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "deploy.sh",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 3,
+                  "snippet": {
+                    "text": "export AWS_SECRET_ACCESS_KEY=wJal\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022EKEY"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "rule": "AWS Secret Access Key",
+            "severity": "CRITICAL",
+            "confidence": "HIGH",
+            "detectionMethod": "regex",
+            "fingerprint": "7a654c1389cd0925",
+            "commitHash": "d4236f7d106a221367636ddc6ea6b03b68c7c2ce",
+            "commitShort": "d4236f7",
+            "author": "Dev One",
+            "date": "2026-09-25T12:15:26+05:30",
+            "stillInHead": false,
+            "branches": [
+              "master"
+            ],
+            "keyBlockLines": 0
+          }
+        },
+        {
+          "ruleId": "SEC_DATABASE_CONNECTION_STRING_W_CREDENTIALS",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "[CRITICAL/HIGH] Database Connection String w/ Credentials detected in 'app/config.py:1' by commit d382694 (Dev One, 2026-09-25T12:15:26+05:30) (branches: master). Status: Purged from HEAD, found in history."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/config.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1,
+                  "snippet": {
+                    "text": "DATABASE_URL = 'postgres://admin:Sup3\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u20222024@prod-db.internal:5432/orders'"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "rule": "Database Connection String w/ Credentials",
+            "severity": "CRITICAL",
+            "confidence": "HIGH",
+            "detectionMethod": "regex",
+            "fingerprint": "ca37c5c8bda7466f",
+            "commitHash": "d38269468136fb5017461e7e037b9958e4f60489",
+            "commitShort": "d382694",
+            "author": "Dev One",
+            "date": "2026-09-25T12:15:26+05:30",
             "stillInHead": false,
             "branches": [
               "master"
@@ -347,7 +347,7 @@
           "ruleIndex": 4,
           "level": "error",
           "message": {
-            "text": "[HIGH/HIGH] Slack Webhook URL detected in 'app/notifications.py:1' by commit 73b4da2 (Dev One, 2026-09-25T11:16:54+05:30) (branches: master). Status: STILL PRESENT in HEAD."
+            "text": "[HIGH/HIGH] Slack Webhook URL detected in 'app/notifications.py:1' by commit 4cccacf (Dev One, 2026-09-25T12:15:26+05:30) (branches: master). Status: STILL PRESENT in HEAD."
           },
           "locations": [
             {
@@ -371,10 +371,10 @@
             "confidence": "HIGH",
             "detectionMethod": "regex",
             "fingerprint": "476fdb7342ac07cf",
-            "commitHash": "73b4da2562054d1f4fa1d3a4780718ae5904fd60",
-            "commitShort": "73b4da2",
+            "commitHash": "4cccacf57c4403e8bad3ed3d1fb3c695db785e80",
+            "commitShort": "4cccacf",
             "author": "Dev One",
-            "date": "2026-09-25T11:16:54+05:30",
+            "date": "2026-09-25T12:15:26+05:30",
             "stillInHead": true,
             "branches": [
               "master"
@@ -387,7 +387,7 @@
           "ruleIndex": 5,
           "level": "error",
           "message": {
-            "text": "[HIGH/HIGH] GitHub Personal Access Token detected in 'scripts/ci_notify.py:1' by commit d777419 (Dev One, 2026-09-25T11:16:54+05:30) (branches: master). Status: STILL PRESENT in HEAD."
+            "text": "[HIGH/HIGH] GitHub Personal Access Token detected in 'scripts/ci_notify.py:1' by commit e23bb65 (Dev One, 2026-09-25T12:15:26+05:30) (branches: master). Status: STILL PRESENT in HEAD."
           },
           "locations": [
             {
@@ -411,10 +411,10 @@
             "confidence": "HIGH",
             "detectionMethod": "regex",
             "fingerprint": "d80b8b85c02354ec",
-            "commitHash": "d777419f1105b4101d8f435a0100aefad2b4d848",
-            "commitShort": "d777419",
+            "commitHash": "e23bb65219affbc52bdfdbb72aba68fab1031a25",
+            "commitShort": "e23bb65",
             "author": "Dev One",
-            "date": "2026-09-25T11:16:54+05:30",
+            "date": "2026-09-25T12:15:26+05:30",
             "stillInHead": true,
             "branches": [
               "master"
@@ -427,7 +427,7 @@
           "ruleIndex": 6,
           "level": "note",
           "message": {
-            "text": "[LOW/LOW] High-Entropy Token (unrecognized format) detected in 'app/notifications.py:2' by commit 73b4da2 (Dev One, 2026-09-25T11:16:54+05:30) (branches: master). Status: STILL PRESENT in HEAD."
+            "text": "[LOW/LOW] High-Entropy Token (unrecognized format) detected in 'app/notifications.py:2' by commit 4cccacf (Dev One, 2026-09-25T12:15:26+05:30) (branches: master). Status: STILL PRESENT in HEAD."
           },
           "locations": [
             {
@@ -451,10 +451,10 @@
             "confidence": "LOW",
             "detectionMethod": "entropy",
             "fingerprint": "ecb8ca0ea49f99f8",
-            "commitHash": "73b4da2562054d1f4fa1d3a4780718ae5904fd60",
-            "commitShort": "73b4da2",
+            "commitHash": "4cccacf57c4403e8bad3ed3d1fb3c695db785e80",
+            "commitShort": "4cccacf",
             "author": "Dev One",
-            "date": "2026-09-25T11:16:54+05:30",
+            "date": "2026-09-25T12:15:26+05:30",
             "stillInHead": true,
             "branches": [
               "master"

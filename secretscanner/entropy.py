@@ -47,7 +47,7 @@ COMMIT_REFERENCE_CONTEXT_RE = re.compile(
     r"uses:\s*\S+@[0-9a-f]{7,40}\b"          # GitHub Actions SHA pin
     r"|\brev:\s*['\"]?[0-9a-f]{7,40}\b"      # pre-commit config revision
     r"|subproject\s+commit\s+[0-9a-f]{40}\b" # git submodule pointer
-    r"|\b(commit|sha1?|revision)\s*[:=]\s*['\"]?[0-9a-f]{7,40}\b"
+    r"|['\"]?(?:commit(?:[_-]?(?:hash|short|sha|id))?|commitHash|commitShort|sha[0-9]*|revision)['\"]?\s*[:=]\s*['\"]?[0-9a-f]{7,40}['\"]?"
     r")"
 )
 

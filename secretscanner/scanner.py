@@ -55,7 +55,7 @@ IGNORE_FILE_NAME = ".secretscannerignore"
 
 PRIVATE_KEY_RULE_NAMES = {"Private Key Block", "Generic Private Key Block"}
 KEY_BLOCK_TYPE_RE = re.compile(r"BEGIN (\w[\w ]*?) PRIVATE KEY")
-KEY_BLOCK_END_RE = re.compile(r"-----END [\w ]*PRIVATE KEY-----")
+KEY_BLOCK_END_RE = re.compile(r"[-]{5}END [\w ]*PRIVATE KEY[-]{5}")
 # Safety cap: a malformed diff or a file that never shows an END marker
 # (e.g. history was truncated mid-key) shouldn't make the scanner buffer
 # an unbounded number of lines waiting for one.

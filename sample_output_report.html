@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Git Secret Leak Scan Report - C:\Users\aditi\AppData\Local\Temp\tmp7ph80hjw\demo-vulnerable-repo</title>
+<title>Git Secret Leak Scan Report - C:\Users\aditi\AppData\Local\Temp\tmp2419p98t\demo-vulnerable-repo</title>
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
@@ -67,7 +67,7 @@
 <body>
   <header>
     <h1>🛡️ Git Secret Leak Security Report</h1>
-    <div class="meta">Repository: <code>C:\Users\aditi\AppData\Local\Temp\tmp7ph80hjw\demo-vulnerable-repo</code> &nbsp;|&nbsp; Scanned: 2026-09-25T05:46:55+00:00 (UTC)</div>
+    <div class="meta">Repository: <code>C:\Users\aditi\AppData\Local\Temp\tmp2419p98t\demo-vulnerable-repo</code> &nbsp;|&nbsp; Scanned: 2026-09-25T06:45:27+00:00 (UTC)</div>
   </header>
 
   <div class="summary-grid">
@@ -140,6 +140,13 @@
             </div></div>
     <div class="dist-box"><div class="dist-title">Top Detectors</div>
             <div class="dist-row">
+              <span class="dist-name">Stripe Live Secret Key</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div>
+            <div class="dist-row">
               <span class="dist-name">AWS Access Key ID</span>
               <div class="dist-bar-bg">
                 <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
@@ -155,13 +162,6 @@
             </div>
             <div class="dist-row">
               <span class="dist-name">Database Connection String w/ Credentials</span>
-              <div class="dist-bar-bg">
-                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
-              </div>
-              <span class="dist-count">1 (14.3%)</span>
-            </div>
-            <div class="dist-row">
-              <span class="dist-name">Stripe Live Secret Key</span>
               <div class="dist-bar-bg">
                 <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
               </div>
@@ -236,91 +236,7 @@
             data-confidence="HIGH"
             data-method="regex"
             data-live="false"
-            data-search="aws access key id deploy.sh 4c756ac dev one master c800fb5bc92edc8f">
-          <td>
-            <span class="sev sev-critical">CRITICAL</span>
-          </td>
-          <td>
-            <span class="conf conf-high">HIGH</span>
-          </td>
-          <td>
-            <strong>AWS Access Key ID</strong><br>
-            <span class="muted">regex</span>
-            <div class="muted context-reason">Matched AWS Access Key ID signature with high confidence</div>
-          </td>
-          <td><code>deploy.sh:2</code></td>
-          <td>
-            <code>4c756ac</code><br>
-            <span class="muted">2026-09-25T11:16:53+05:30</span><br>
-            <span class="muted">Dev One</span>
-          </td>
-          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
-          <td><code class="preview">export AWS_ACCESS_KEY_ID=AKIA••••••••MPLE</code></td>
-          <td><span class="branches-tag">master</span></td>
-          <td><code>c800fb5bc92edc8f</code></td>
-        </tr>
-        <tr class="finding-row"
-            data-severity="CRITICAL"
-            data-confidence="HIGH"
-            data-method="regex"
-            data-live="false"
-            data-search="aws secret access key deploy.sh 4c756ac dev one master 7a654c1389cd0925">
-          <td>
-            <span class="sev sev-critical">CRITICAL</span>
-          </td>
-          <td>
-            <span class="conf conf-high">HIGH</span>
-          </td>
-          <td>
-            <strong>AWS Secret Access Key</strong><br>
-            <span class="muted">regex</span>
-            <div class="muted context-reason">Matched AWS Secret Access Key signature with high confidence</div>
-          </td>
-          <td><code>deploy.sh:3</code></td>
-          <td>
-            <code>4c756ac</code><br>
-            <span class="muted">2026-09-25T11:16:53+05:30</span><br>
-            <span class="muted">Dev One</span>
-          </td>
-          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
-          <td><code class="preview">export AWS_SECRET_ACCESS_KEY=wJal••••••••EKEY</code></td>
-          <td><span class="branches-tag">master</span></td>
-          <td><code>7a654c1389cd0925</code></td>
-        </tr>
-        <tr class="finding-row"
-            data-severity="CRITICAL"
-            data-confidence="HIGH"
-            data-method="regex"
-            data-live="false"
-            data-search="database connection string w/ credentials app/config.py e018126 dev one master ca37c5c8bda7466f">
-          <td>
-            <span class="sev sev-critical">CRITICAL</span>
-          </td>
-          <td>
-            <span class="conf conf-high">HIGH</span>
-          </td>
-          <td>
-            <strong>Database Connection String w/ Credentials</strong><br>
-            <span class="muted">regex</span>
-            <div class="muted context-reason">Matched Database Connection String w/ Credentials signature with high confidence</div>
-          </td>
-          <td><code>app/config.py:1</code></td>
-          <td>
-            <code>e018126</code><br>
-            <span class="muted">2026-09-25T11:16:53+05:30</span><br>
-            <span class="muted">Dev One</span>
-          </td>
-          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
-          <td><code class="preview">DATABASE_URL = &#x27;postgres://admin:Sup3••••••••2024@prod-db.internal:5432/orders&#x27;</code></td>
-          <td><span class="branches-tag">master</span></td>
-          <td><code>ca37c5c8bda7466f</code></td>
-        </tr>
-        <tr class="finding-row"
-            data-severity="CRITICAL"
-            data-confidence="HIGH"
-            data-method="regex"
-            data-live="false"
-            data-search="stripe live secret key app/billing.py 22fa839 dev one master aa59c639b427a8c6">
+            data-search="stripe live secret key app/billing.py f313b48 dev one master aa59c639b427a8c6">
           <td>
             <span class="sev sev-critical">CRITICAL</span>
           </td>
@@ -334,8 +250,8 @@
           </td>
           <td><code>app/billing.py:2</code></td>
           <td>
-            <code>22fa839</code><br>
-            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <code>f313b48</code><br>
+            <span class="muted">2026-09-25T12:15:26+05:30</span><br>
             <span class="muted">Dev One</span>
           </td>
           <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
@@ -344,11 +260,95 @@
           <td><code>aa59c639b427a8c6</code></td>
         </tr>
         <tr class="finding-row"
+            data-severity="CRITICAL"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="false"
+            data-search="aws access key id deploy.sh d4236f7 dev one master c800fb5bc92edc8f">
+          <td>
+            <span class="sev sev-critical">CRITICAL</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>AWS Access Key ID</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched AWS Access Key ID signature with high confidence</div>
+          </td>
+          <td><code>deploy.sh:2</code></td>
+          <td>
+            <code>d4236f7</code><br>
+            <span class="muted">2026-09-25T12:15:26+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
+          <td><code class="preview">export AWS_ACCESS_KEY_ID=AKIA••••••••MPLE</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>c800fb5bc92edc8f</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="CRITICAL"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="false"
+            data-search="aws secret access key deploy.sh d4236f7 dev one master 7a654c1389cd0925">
+          <td>
+            <span class="sev sev-critical">CRITICAL</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>AWS Secret Access Key</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched AWS Secret Access Key signature with high confidence</div>
+          </td>
+          <td><code>deploy.sh:3</code></td>
+          <td>
+            <code>d4236f7</code><br>
+            <span class="muted">2026-09-25T12:15:26+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
+          <td><code class="preview">export AWS_SECRET_ACCESS_KEY=wJal••••••••EKEY</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>7a654c1389cd0925</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="CRITICAL"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="false"
+            data-search="database connection string w/ credentials app/config.py d382694 dev one master ca37c5c8bda7466f">
+          <td>
+            <span class="sev sev-critical">CRITICAL</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>Database Connection String w/ Credentials</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched Database Connection String w/ Credentials signature with high confidence</div>
+          </td>
+          <td><code>app/config.py:1</code></td>
+          <td>
+            <code>d382694</code><br>
+            <span class="muted">2026-09-25T12:15:26+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
+          <td><code class="preview">DATABASE_URL = &#x27;postgres://admin:Sup3••••••••2024@prod-db.internal:5432/orders&#x27;</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>ca37c5c8bda7466f</code></td>
+        </tr>
+        <tr class="finding-row"
             data-severity="HIGH"
             data-confidence="HIGH"
             data-method="regex"
             data-live="true"
-            data-search="slack webhook url app/notifications.py 73b4da2 dev one master 476fdb7342ac07cf">
+            data-search="slack webhook url app/notifications.py 4cccacf dev one master 476fdb7342ac07cf">
           <td>
             <span class="sev sev-high">HIGH</span>
           </td>
@@ -362,8 +362,8 @@
           </td>
           <td><code>app/notifications.py:1</code></td>
           <td>
-            <code>73b4da2</code><br>
-            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <code>4cccacf</code><br>
+            <span class="muted">2026-09-25T12:15:26+05:30</span><br>
             <span class="muted">Dev One</span>
           </td>
           <td><span class="badge badge-live">LIVE IN HEAD</span></td>
@@ -376,7 +376,7 @@
             data-confidence="HIGH"
             data-method="regex"
             data-live="true"
-            data-search="github personal access token scripts/ci_notify.py d777419 dev one master d80b8b85c02354ec">
+            data-search="github personal access token scripts/ci_notify.py e23bb65 dev one master d80b8b85c02354ec">
           <td>
             <span class="sev sev-high">HIGH</span>
           </td>
@@ -390,8 +390,8 @@
           </td>
           <td><code>scripts/ci_notify.py:1</code></td>
           <td>
-            <code>d777419</code><br>
-            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <code>e23bb65</code><br>
+            <span class="muted">2026-09-25T12:15:26+05:30</span><br>
             <span class="muted">Dev One</span>
           </td>
           <td><span class="badge badge-live">LIVE IN HEAD</span></td>
@@ -404,7 +404,7 @@
             data-confidence="LOW"
             data-method="entropy"
             data-live="true"
-            data-search="high-entropy token (unrecognized format) app/notifications.py 73b4da2 dev one master ecb8ca0ea49f99f8">
+            data-search="high-entropy token (unrecognized format) app/notifications.py 4cccacf dev one master ecb8ca0ea49f99f8">
           <td>
             <span class="sev sev-low">LOW</span>
           </td>
@@ -418,8 +418,8 @@
           </td>
           <td><code>app/notifications.py:2</code></td>
           <td>
-            <code>73b4da2</code><br>
-            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <code>4cccacf</code><br>
+            <span class="muted">2026-09-25T12:15:26+05:30</span><br>
             <span class="muted">Dev One</span>
           </td>
           <td><span class="badge badge-live">LIVE IN HEAD</span></td>

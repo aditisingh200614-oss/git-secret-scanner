@@ -40,3 +40,9 @@ htmlcov/
 .DS_Store
 *.swp
 *.swo
+
+# Local scan outputs
+scan-report.json
+scan-report.html
+scan-report.sarif
+
