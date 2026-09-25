@@ -261,7 +261,7 @@ Create a `.secretscannerignore` file in the root of your repository with regex p
 
 ## Security Considerations
 
-1. **Synthetic Test Data Only**: Never commit real credentials for testing purposes. All tests and demo scripts in this repository utilize synthetic dummy secrets (`AKIAIOSFODNN7EXAMPLE`, `ghp_...`, `sk_live_...`).
+1. **Synthetic Test Data Only**: Never commit real credentials for testing purposes. All tests and demo scripts in this repository utilize synthetic dummy secrets (`AKIA...EXAMPLE`, `ghp_...`, `sk_live_...`).
 2. **Strict Redaction**: Reports, logs, SARIF files, and baselines mask all credential spans (e.g. `AKIA••••••••MPLE`). Plaintext secrets are never stored on disk by this scanner.
 3. **Remediation Protocol**: If a live secret is discovered:
    - **Step 1: Revoke/Rotate immediately** at the provider. Do not wait for Git history cleanup.

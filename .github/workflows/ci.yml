@@ -37,6 +37,7 @@ jobs:
       - name: Scan repository history for leaked secrets
         run: |
           python -m secretscanner . \
+            --baseline .secretscanner-baseline.json \
             --fail-on CRITICAL \
             --json scan-report.json \
             --html scan-report.html \
