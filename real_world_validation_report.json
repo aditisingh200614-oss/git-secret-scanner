@@ -1,0 +1,109 @@
+{
+  "repository": "/home/claude/real-world-test-repo",
+  "scanned_at": "2026-09-25T03:10:58+00:00",
+  "total_findings": 7,
+  "summary_by_severity": {
+    "LOW": 7
+  },
+  "still_in_head_count": 7,
+  "findings": [
+    {
+      "rule": "High-Entropy Token (unrecognized format)",
+      "severity": "LOW",
+      "detection_method": "entropy",
+      "file_path": "docs/config.rst",
+      "line_number": 152,
+      "commit_hash": "b7c0e564d4c8ddd82550f2c2958672558c1c657b",
+      "commit_short": "b7c0e564",
+      "author": "Armin Ronacher",
+      "date": "2010-07-06T14:42:43+02:00",
+      "still_in_head": true,
+      "line_preview": "``YOUR\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022nfig.py`` and you are done.  However",
+      "fingerprint": "e631ba85084b88e2"
+    },
+    {
+      "rule": "High-Entropy Token (unrecognized format)",
+      "severity": "LOW",
+      "detection_method": "entropy",
+      "file_path": "docs/tutorial/tests.rst",
+      "line_number": 56,
+      "commit_hash": "2f8086e8c88377b822be6b83b306c8a1ef7ce426",
+      "commit_short": "2f8086e8",
+      "author": "Armin Ronacher",
+      "date": "2020-02-10T20:36:55+01:00",
+      "still_in_head": true,
+      "line_preview": "('test', 'pbkdf2:sha256:50000$TCI4GzcX$0de1\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022cb2f'),",
+      "fingerprint": "28bea91577cc0710"
+    },
+    {
+      "rule": "High-Entropy Token (unrecognized format)",
+      "severity": "LOW",
+      "detection_method": "entropy",
+      "file_path": "docs/tutorial/tests.rst",
+      "line_number": 57,
+      "commit_hash": "2f8086e8c88377b822be6b83b306c8a1ef7ce426",
+      "commit_short": "2f8086e8",
+      "author": "Armin Ronacher",
+      "date": "2020-02-10T20:36:55+01:00",
+      "still_in_head": true,
+      "line_preview": "('other', 'pbkdf2:sha256:50000$kJPKsz6N$d2d4\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u20229f79');",
+      "fingerprint": "beb1b53be71e78bf"
+    },
+    {
+      "rule": "High-Entropy Token (unrecognized format)",
+      "severity": "LOW",
+      "detection_method": "entropy",
+      "file_path": "docs/config.rst",
+      "line_number": 41,
+      "commit_hash": "0ae0f5957fde73c4824ae2d7080351f2c52bf260",
+      "commit_short": "0ae0f595",
+      "author": "David Lord",
+      "date": "2021-11-01T12:41:10-07:00",
+      "still_in_head": true,
+      "line_preview": "SECRET_KEY='192b\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022bcbf'",
+      "fingerprint": "050fc0588f032520"
+    },
+    {
+      "rule": "High-Entropy Token (unrecognized format)",
+      "severity": "LOW",
+      "detection_method": "entropy",
+      "file_path": "docs/quickstart.rst",
+      "line_number": 851,
+      "commit_hash": "0ae0f5957fde73c4824ae2d7080351f2c52bf260",
+      "commit_short": "0ae0f595",
+      "author": "David Lord",
+      "date": "2021-11-01T12:41:10-07:00",
+      "still_in_head": true,
+      "line_preview": "'192b\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022bcbf'",
+      "fingerprint": "fe39c62ef83e40ca"
+    },
+    {
+      "rule": "High-Entropy Token (unrecognized format)",
+      "severity": "LOW",
+      "detection_method": "entropy",
+      "file_path": "docs/tutorial/deploy.rst",
+      "line_number": 93,
+      "commit_hash": "0ae0f5957fde73c4824ae2d7080351f2c52bf260",
+      "commit_short": "0ae0f595",
+      "author": "David Lord",
+      "date": "2021-11-01T12:41:10-07:00",
+      "still_in_head": true,
+      "line_preview": "'192b\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022bcbf'",
+      "fingerprint": "4de811f38abbfe77"
+    },
+    {
+      "rule": "High-Entropy Token (unrecognized format)",
+      "severity": "LOW",
+      "detection_method": "entropy",
+      "file_path": "docs/config.rst",
+      "line_number": 533,
+      "commit_hash": "2f5a2ab82ee17f5e14b8ecf0a4b3b07ceafeee98",
+      "commit_short": "2f5a2ab8",
+      "author": "David Lord",
+      "date": "2022-03-25T12:14:29-07:00",
+      "still_in_head": true,
+      "line_preview": "$ export FLASK_SECRET_KEY=\"5f35\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u20225d2f\"",
+      "fingerprint": "4fd1fcbdc1e74434"
+    }
+  ]
+}

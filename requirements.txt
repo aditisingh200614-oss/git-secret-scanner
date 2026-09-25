@@ -1,0 +1,7 @@
+# No third-party dependencies required to run the scanner - stdlib only
+# (re, subprocess, hashlib, json, argparse, dataclasses, html, math).
+# This is a deliberate design choice: a security tool that itself pulls in
+# a large dependency tree is a larger supply-chain attack surface.
+#
+# Dev/test tooling:
+# (none required - tests use unittest from the standard library)

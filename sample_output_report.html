@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Secret Leak Scan Report - C:\Users\aditi\AppData\Local\Temp\tmp7ph80hjw\demo-vulnerable-repo</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          max-width: 1280px; margin: 30px auto; padding: 0 20px; background:#0b0f17; color:#e2e8f0; line-height: 1.5; }
+  header { border-bottom: 1px solid #1e293b; padding-bottom: 16px; margin-bottom: 24px; }
+  h1 { font-size: 24px; margin: 0 0 6px 0; display:flex; align-items:center; gap:10px; color:#f8fafc; }
+  .meta { color:#94a3b8; font-size:13px; }
+  .meta code { background:#1e293b; padding:2px 6px; border-radius:4px; }
+
+  .summary-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin-bottom:24px; }
+  .card { background:#131b26; border-left:4px solid #64748b; border-radius:8px; padding:12px 16px; }
+  .card-num { font-size:24px; font-weight:700; color:#f8fafc; }
+  .card-label { font-size:11px; font-weight:600; letter-spacing:0.5px; color:#94a3b8; margin-top:2px; }
+
+  .dist-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:28px; }
+  .dist-box { background:#131b26; border:1px solid #1e293b; border-radius:8px; padding:16px; }
+  .dist-title { font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px; }
+  .dist-row { display:flex; align-items:center; gap:10px; font-size:12px; margin-bottom:8px; }
+  .dist-name { width:110px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#94a3b8; }
+  .dist-bar-bg { flex:1; background:#1e293b; height:8px; border-radius:4px; overflow:hidden; }
+  .dist-bar-fill { height:100%; border-radius:4px; }
+  .dist-count { width:70px; text-align:right; font-size:11px; color:#cbd5e1; }
+
+  .alert-live { background:#450a0a; border:1px solid #dc2626; color:#fecaca; padding:14px 18px; border-radius:8px; margin-bottom:20px; font-size:14px; }
+  .baseline-note { background:#082f49; border:1px solid #0284c7; color:#bae6fd; padding:10px 16px; border-radius:8px; margin-bottom:20px; font-size:13px; }
+
+  .toolbar { display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap; background:#131b26; padding:14px; border-radius:8px; border:1px solid #1e293b; align-items:center; }
+  .toolbar input[type="text"] { flex:1; min-width:200px; background:#0b0f17; border:1px solid #334155; color:#f8fafc; padding:8px 12px; border-radius:6px; font-size:13px; }
+  .toolbar select { background:#0b0f17; border:1px solid #334155; color:#f8fafc; padding:8px 12px; border-radius:6px; font-size:13px; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; background:#131b26; border-radius:8px; overflow:hidden; border:1px solid #1e293b; }
+  th { text-align:left; padding:12px 10px; background:#0f172a; border-bottom:2px solid #1e293b; color:#94a3b8; text-transform:uppercase; font-size:11px; letter-spacing:0.5px; }
+  td { padding:12px 10px; border-bottom:1px solid #1e293b; vertical-align:top; }
+  tr:hover td { background:#172231; }
+
+  code { background:#1e293b; color:#38bdf8; padding:2px 6px; border-radius:4px; font-size:12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  code.preview { display:block; white-space:pre-wrap; word-break:break-all; max-width:320px; color:#f1f5f9; background:#0b0f17; border:1px solid #334155; }
+
+  .sev { padding:3px 8px; border-radius:4px; font-weight:700; font-size:11px; color:white; display:inline-block; }
+  .sev-critical { background:#dc2626; }
+  .sev-high { background:#ea580c; }
+  .sev-medium { background:#ca8a04; }
+  .sev-low { background:#0891b2; }
+
+  .conf { padding:2px 7px; border-radius:4px; font-weight:600; font-size:10px; color:white; display:inline-block; }
+  .conf-high { background:#059669; }
+  .conf-medium { background:#2563eb; }
+  .conf-low { background:#7c3aed; }
+
+  .badge { font-size:10px; padding:3px 8px; border-radius:4px; font-weight:700; }
+  .badge-live { background:#dc2626; color:white; }
+  .badge-purged { background:#334155; color:#94a3b8; }
+  .branches-tag { font-size:12px; color:#94a3b8; }
+  .context-reason { color:#94a3b8; font-size:11px; margin-top:4px; }
+  .muted { color:#64748b; font-size:11px; }
+  .empty-state { text-align:center; padding:40px; color:#4ade80; font-size:16px; background:#131b26; border-radius:8px; border:1px solid #1e293b; }
+  footer { margin-top:30px; color:#64748b; font-size:12px; text-align:center; padding:16px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>🛡️ Git Secret Leak Security Report</h1>
+    <div class="meta">Repository: <code>C:\Users\aditi\AppData\Local\Temp\tmp7ph80hjw\demo-vulnerable-repo</code> &nbsp;|&nbsp; Scanned: 2026-09-25T05:46:55+00:00 (UTC)</div>
+  </header>
+
+  <div class="summary-grid">
+    <div class="card" style="border-left-color:#38bdf8;">
+      <div class="card-num">7</div><div class="card-label">TOTAL FINDINGS</div>
+    </div>
+    <div class="card" style="border-left-color:#ef4444;">
+      <div class="card-num">4</div><div class="card-label">CRITICAL</div>
+    </div>
+    <div class="card" style="border-left-color:#f97316;">
+      <div class="card-num">2</div><div class="card-label">HIGH</div>
+    </div>
+    <div class="card" style="border-left-color:#eab308;">
+      <div class="card-num">0</div><div class="card-label">MEDIUM</div>
+    </div>
+    <div class="card" style="border-left-color:#06b6d4;">
+      <div class="card-num">1</div><div class="card-label">LOW</div>
+    </div>
+    <div class="card" style="border-left-color:#10b981;">
+      <div class="card-num">6</div><div class="card-label">HIGH CONFIDENCE</div>
+    </div>
+    <div class="card" style="border-left-color:#dc2626;">
+      <div class="card-num">3</div><div class="card-label">STILL IN HEAD</div>
+    </div>
+    <div class="card" style="border-left-color:#6b7280;">
+      <div class="card-num">4</div><div class="card-label">HISTORICAL ONLY</div>
+    </div>
+    </div>
+
+  <div class='alert-live'><strong>🚨 ACTION REQUIRED: 3 secret(s) are STILL LIVE in the current HEAD.</strong> These credentials are currently exposed to anyone with clone access. Rotate them immediately before rewriting history.</div>
+
+
+  <div class="dist-grid">
+    <div class="dist-box"><div class="dist-title">Severity Distribution</div>
+            <div class="dist-row">
+              <span class="dist-name">CRITICAL</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:57.1%; background:#ef4444;"></div>
+              </div>
+              <span class="dist-count">4 (57.1%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">HIGH</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:28.6%; background:#f97316;"></div>
+              </div>
+              <span class="dist-count">2 (28.6%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">LOW</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#06b6d4;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div></div>
+    <div class="dist-box"><div class="dist-title">Confidence Distribution</div>
+            <div class="dist-row">
+              <span class="dist-name">HIGH</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:85.7%; background:#10b981;"></div>
+              </div>
+              <span class="dist-count">6 (85.7%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">LOW</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#8b5cf6;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div></div>
+    <div class="dist-box"><div class="dist-title">Top Detectors</div>
+            <div class="dist-row">
+              <span class="dist-name">AWS Access Key ID</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">AWS Secret Access Key</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">Database Connection String w/ Credentials</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">Stripe Live Secret Key</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">Slack Webhook URL</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div>
+            <div class="dist-row">
+              <span class="dist-name">GitHub Personal Access Token</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:14.3%; background:#6366f1;"></div>
+              </div>
+              <span class="dist-count">1 (14.3%)</span>
+            </div></div>
+    <div class="dist-box"><div class="dist-title">Branch Reachability</div>
+            <div class="dist-row">
+              <span class="dist-name">master</span>
+              <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:100.0%; background:#0ea5e9;"></div>
+              </div>
+              <span class="dist-count">7 (100.0%)</span>
+            </div></div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="searchInput" placeholder="Search by rule, file, commit, author, branch, or fingerprint..." oninput="filterTable()">
+    <select id="sevFilter" onchange="filterTable()">
+      <option value="ALL">All Severities</option>
+      <option value="CRITICAL">Critical</option>
+      <option value="HIGH">High</option>
+      <option value="MEDIUM">Medium</option>
+      <option value="LOW">Low</option>
+    </select>
+    <select id="confFilter" onchange="filterTable()">
+      <option value="ALL">All Confidence Levels</option>
+      <option value="HIGH">High</option>
+      <option value="MEDIUM">Medium</option>
+      <option value="LOW">Low</option>
+    </select>
+    <select id="liveFilter" onchange="filterTable()">
+      <option value="ALL">All HEAD Statuses</option>
+      <option value="true">Live in HEAD</option>
+      <option value="false">Historical Only</option>
+    </select>
+  </div>
+
+
+
+  <table id="findingsTable" style="">
+    <thead>
+      <tr>
+        <th>Severity</th>
+        <th>Confidence</th>
+        <th>Detector & Reason</th>
+        <th>File & Line</th>
+        <th>Commit & Author</th>
+        <th>HEAD Status</th>
+        <th>Redacted Preview</th>
+        <th>Branches</th>
+        <th>Fingerprint</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr class="finding-row"
+            data-severity="CRITICAL"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="false"
+            data-search="aws access key id deploy.sh 4c756ac dev one master c800fb5bc92edc8f">
+          <td>
+            <span class="sev sev-critical">CRITICAL</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>AWS Access Key ID</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched AWS Access Key ID signature with high confidence</div>
+          </td>
+          <td><code>deploy.sh:2</code></td>
+          <td>
+            <code>4c756ac</code><br>
+            <span class="muted">2026-09-25T11:16:53+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
+          <td><code class="preview">export AWS_ACCESS_KEY_ID=AKIA••••••••MPLE</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>c800fb5bc92edc8f</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="CRITICAL"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="false"
+            data-search="aws secret access key deploy.sh 4c756ac dev one master 7a654c1389cd0925">
+          <td>
+            <span class="sev sev-critical">CRITICAL</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>AWS Secret Access Key</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched AWS Secret Access Key signature with high confidence</div>
+          </td>
+          <td><code>deploy.sh:3</code></td>
+          <td>
+            <code>4c756ac</code><br>
+            <span class="muted">2026-09-25T11:16:53+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
+          <td><code class="preview">export AWS_SECRET_ACCESS_KEY=wJal••••••••EKEY</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>7a654c1389cd0925</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="CRITICAL"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="false"
+            data-search="database connection string w/ credentials app/config.py e018126 dev one master ca37c5c8bda7466f">
+          <td>
+            <span class="sev sev-critical">CRITICAL</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>Database Connection String w/ Credentials</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched Database Connection String w/ Credentials signature with high confidence</div>
+          </td>
+          <td><code>app/config.py:1</code></td>
+          <td>
+            <code>e018126</code><br>
+            <span class="muted">2026-09-25T11:16:53+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
+          <td><code class="preview">DATABASE_URL = &#x27;postgres://admin:Sup3••••••••2024@prod-db.internal:5432/orders&#x27;</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>ca37c5c8bda7466f</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="CRITICAL"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="false"
+            data-search="stripe live secret key app/billing.py 22fa839 dev one master aa59c639b427a8c6">
+          <td>
+            <span class="sev sev-critical">CRITICAL</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>Stripe Live Secret Key</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched Stripe Live Secret Key signature with high confidence</div>
+          </td>
+          <td><code>app/billing.py:2</code></td>
+          <td>
+            <code>22fa839</code><br>
+            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-purged">HISTORICAL ONLY</span></td>
+          <td><code class="preview">stripe.api_key = &#x27;sk_l••••••••0000&#x27;</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>aa59c639b427a8c6</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="HIGH"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="true"
+            data-search="slack webhook url app/notifications.py 73b4da2 dev one master 476fdb7342ac07cf">
+          <td>
+            <span class="sev sev-high">HIGH</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>Slack Webhook URL</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched Slack Webhook URL signature with high confidence</div>
+          </td>
+          <td><code>app/notifications.py:1</code></td>
+          <td>
+            <code>73b4da2</code><br>
+            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-live">LIVE IN HEAD</span></td>
+          <td><code class="preview">SLACK_WEBHOOK = &#x27;http••••••••XXXX&#x27;</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>476fdb7342ac07cf</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="HIGH"
+            data-confidence="HIGH"
+            data-method="regex"
+            data-live="true"
+            data-search="github personal access token scripts/ci_notify.py d777419 dev one master d80b8b85c02354ec">
+          <td>
+            <span class="sev sev-high">HIGH</span>
+          </td>
+          <td>
+            <span class="conf conf-high">HIGH</span>
+          </td>
+          <td>
+            <strong>GitHub Personal Access Token</strong><br>
+            <span class="muted">regex</span>
+            <div class="muted context-reason">Matched GitHub Personal Access Token signature with high confidence</div>
+          </td>
+          <td><code>scripts/ci_notify.py:1</code></td>
+          <td>
+            <code>d777419</code><br>
+            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-live">LIVE IN HEAD</span></td>
+          <td><code class="preview">GITHUB_TOKEN = &#x27;ghp_••••••••8B4a&#x27;</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>d80b8b85c02354ec</code></td>
+        </tr>
+        <tr class="finding-row"
+            data-severity="LOW"
+            data-confidence="LOW"
+            data-method="entropy"
+            data-live="true"
+            data-search="high-entropy token (unrecognized format) app/notifications.py 73b4da2 dev one master ecb8ca0ea49f99f8">
+          <td>
+            <span class="sev sev-low">LOW</span>
+          </td>
+          <td>
+            <span class="conf conf-low">LOW</span>
+          </td>
+          <td>
+            <strong>High-Entropy Token (unrecognized format)</strong><br>
+            <span class="muted">entropy</span>
+            <div class="muted context-reason">High-entropy token without recognizable vendor format or credential variable assignment</div>
+          </td>
+          <td><code>app/notifications.py:2</code></td>
+          <td>
+            <code>73b4da2</code><br>
+            <span class="muted">2026-09-25T11:16:54+05:30</span><br>
+            <span class="muted">Dev One</span>
+          </td>
+          <td><span class="badge badge-live">LIVE IN HEAD</span></td>
+          <td><code class="preview">INTERNAL_SERVICE_TOKEN = &#x27;qZ8v••••••••X1zC&#x27;</code></td>
+          <td><span class="branches-tag">master</span></td>
+          <td><code>ecb8ca0ea49f99f8</code></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    Generated by <strong>git-secret-scanner</strong> &middot; Credentials are strictly masked in all reports.<br>
+    Remediation workflow: 1. Rotate active credentials &rarr; 2. Rewrite Git history (<code>git filter-repo</code>) &rarr; 3. Establish baseline if necessary.
+  </footer>
+
+  <script>
+    function filterTable() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const sev = document.getElementById('sevFilter').value;
+      const conf = document.getElementById('confFilter').value;
+      const live = document.getElementById('liveFilter').value;
+      const rows = document.querySelectorAll('.finding-row');
+
+      rows.forEach(row => {
+        const matchesSearch = !query || row.getAttribute('data-search').includes(query);
+        const matchesSev = (sev === 'ALL') || (row.getAttribute('data-severity') === sev);
+        const matchesConf = (conf === 'ALL') || (row.getAttribute('data-confidence') === conf);
+        const matchesLive = (live === 'ALL') || (row.getAttribute('data-live') === live);
+
+        if (matchesSearch && matchesSev && matchesConf && matchesLive) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

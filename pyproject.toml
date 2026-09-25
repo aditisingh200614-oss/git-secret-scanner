@@ -1,0 +1,24 @@
+[project]
+name = "git-secret-scanner"
+version = "2.0.0"
+description = "Scans a git repository's full commit history for leaked credentials (regex + entropy detection), not just current files."
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+secretscanner = "secretscanner.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["secretscanner"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E501", "E731"]
